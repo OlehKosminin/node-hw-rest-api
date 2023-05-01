@@ -5,6 +5,15 @@ const { schemas } = require("../../models/users");
 const ctrl = require("../../controllers/auth-controllers");
 // singup
 router.post("/register", validateBody(schemas.registerSchema), ctrl.register);
+
+router.get("/verify/:{verificationCode}", ctrl.verify);
+
+router.get(
+  "resend-verify-email",
+  validateBody(schemas.emailSchema),
+  ctrl.resendVerifyEmail
+);
+
 // singin
 router.post("/login", validateBody(schemas.loginSchema), ctrl.login);
 
